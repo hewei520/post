@@ -5,14 +5,16 @@
  * Date: 2021/1/22
  * Time: 10:08
  */
+namespace hw;
 
-if (!function_exists('getUrl')) {
+class Post
+{
     /**
      * GET请求
      * @param $url string 请求地址
      * @return bool
      */
-    function getUrl($url)
+    public static function getUrl($url)
     {
         $info = curl_init();
         curl_setopt($info, CURLOPT_RETURNTRANSFER, true);
@@ -25,16 +27,14 @@ if (!function_exists('getUrl')) {
         curl_close($info);
         return true;
     }
-}
 
-if (!function_exists('postUrl')) {
     /**
      * POST请求
      * @param $url string 请求地址
      * @param $postData array 参数
      * @return bool
      */
-    function postUrl($url, $postData = [])
+    public static function postUrl($url, $postData = [])
     {
         if (empty($url) || empty($postData)) {
             return false;
@@ -58,4 +58,5 @@ if (!function_exists('postUrl')) {
 
         return $data;
     }
+
 }
