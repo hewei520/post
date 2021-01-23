@@ -11,7 +11,8 @@
  * @param $url string 请求地址
  * @return bool
  */
-function getUrl($url){
+function getUrl($url)
+{
     $info = curl_init();
     curl_setopt($info, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($info, CURLOPT_HEADER, 0);
@@ -26,25 +27,25 @@ function getUrl($url){
 
 /**
  * POST请求
- * @param $url string post请求地址
- * @param $postData array post参数
+ * @param $url string 请求地址
+ * @param $postData array 参数
  * @return bool
  */
-function postUrl($url,$postData = []){
+function postUrl($url, $postData = [])
+{
     if (empty($url) || empty($postData)) {
         return false;
     }
 
     $o = "";
-    foreach ( $postData as $k => $v )
-    {
-        $o.= "$k=" . urlencode( $v ). "&" ;
+    foreach ($postData as $k => $v) {
+        $o .= "$k=" . urlencode($v) . "&";
     }
-    $postData = substr($o,0,-1);
-    $postUrl = $url;
+    $postData = substr($o, 0, -1);
+    $postUrl  = $url;
     $curlPost = $postData;
-    $ch = curl_init();//初始化curl
-    curl_setopt($ch, CURLOPT_URL,$postUrl);//抓取指定网页
+    $ch       = curl_init();//初始化curl
+    curl_setopt($ch, CURLOPT_URL, $postUrl);//抓取指定网页
     curl_setopt($ch, CURLOPT_HEADER, 0);//设置header
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//要求结果为字符串且输出到屏幕上
     curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
